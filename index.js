@@ -1,7 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
-const xoauth2 = require("xoauth2");
 const cors = require("cors");
 
 if (process.env.NODE_ENV !== "production") {
@@ -13,7 +12,7 @@ const APP = express();
 const PORT = process.env.PORT || 8000;
 
 APP.use(bodyParser.json());
-APP.use(bodyParser.urlencoded({ extended: true }));
+APP.use(bodyParser.urlencoded({ extended: false }));
 
 APP.use(cors());
 
@@ -27,27 +26,19 @@ APP.get("/", (req, res) => {
 
 APP.post("/api/send", (req, res) => {
   const data = req.body;
-  console.log(data);
 
   const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
+    service: "Gmail",
     auth: {
-      type: "OAuth2",
       user: process.env.user,
-      pass: process.env.pass,
-      clientId: process.env.clientId,
-      clientSecret: process.env.clientSecret,
-      refreshToken: process.env.refreshToken,
-      accessToken: process.env.accessToken,
+      pass: process.env.password,
     },
   });
 
   const mailOptions = {
-    from: "new@gmail.com",
+    from: `${data.name}`,
     to: "christian.ak.mack@gmail.com",
-    subject: `New message from: ${data.email}`,
+    subject: `New message from: ${data.name}`,
     html: `<p>${data.name}</p><p>${data.email}</p><p>${data.message}</p>`,
   };
 
