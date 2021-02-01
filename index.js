@@ -17,7 +17,7 @@ APP.use(bodyParser.json());
 APP.use(bodyParser.urlencoded({ extended: false }));
 
 APP.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", "https://iamchristianmack.com");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
