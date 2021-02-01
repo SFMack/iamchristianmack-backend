@@ -14,7 +14,7 @@ const app = express();
 app.use(cors());
 
 // app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get("/", (req, res) => {
   res.send("We lit");
@@ -22,8 +22,7 @@ app.get("/", (req, res) => {
 
 app.post("/api/send", cors(), (req, res) => {
   const data = req.body;
-
-  req.headers;
+  console.log(data);
 
   const transporter = nodemailer.createTransport({
     service: "Gmail",
