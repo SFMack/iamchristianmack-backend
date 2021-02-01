@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
   res.send("We lit");
 });
 
-app.post("/api/send", cors(), (req, res) => {
+app.post("/api/send", (req, res) => {
   const data = req.body;
   console.log(data);
 
