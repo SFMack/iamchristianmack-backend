@@ -35,9 +35,11 @@ APP.get("/", (req, res) => {
 
 APP.post("/api/send", (req, res) => {
   const data = req.body;
+  console.log(data);
 
   const transporter = nodemailer.createTransport({
-    service: "Gmail",
+    host: "smtp.gmail.com",
+    port: 587,
     auth: {
       user: process.env.user,
       pass: process.env.password,
