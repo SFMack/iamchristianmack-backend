@@ -11,7 +11,7 @@ const APP = express();
 
 const PORT = process.env.PORT || 8000;
 
-APP.use(cors());
+// APP.use(cors());
 
 APP.use(bodyParser.json());
 APP.use(bodyParser.urlencoded({ extended: false }));
