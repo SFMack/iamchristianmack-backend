@@ -7,16 +7,16 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 
-const APP = express();
-
 const PORT = process.env.PORT || 8000;
 
-APP.use(cors());
+const app = express();
 
-APP.use(bodyParser.json());
-APP.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
 
-APP.use(function (req, res, next) {
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "https://iamchristianmack.com");
   res.header(
     "Access-Control-Allow-Headers",
@@ -25,15 +25,11 @@ APP.use(function (req, res, next) {
   next();
 });
 
-APP.listen(PORT, () => {
-  console.log("Port 8000 is live");
-});
-
-APP.get("/", (req, res) => {
+app.get("/", (req, res) => {
   res.send("We lit");
 });
 
-APP.post("/api/s", (req, res) => {
+app.post("/api/send", (req, res) => {
   const data = req.body;
   console.log(data);
   console.log(process.env.user);
@@ -61,4 +57,8 @@ APP.post("/api/s", (req, res) => {
       console.log("Message sent: " + info.response);
     }
   });
+});
+
+app.listen(PORT, () => {
+  console.log("Port 8000 is live");
 });
