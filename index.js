@@ -11,7 +11,7 @@ const APP = express();
 
 const PORT = process.env.PORT || 8000;
 
-// APP.use(cors());
+APP.use(cors());
 
 APP.use(bodyParser.json());
 APP.use(bodyParser.urlencoded({ extended: false }));
@@ -33,7 +33,7 @@ APP.get("/", (req, res) => {
   res.send("We lit");
 });
 
-APP.post("/api/send", (req, res) => {
+APP.post("/api/s", (req, res) => {
   const data = req.body;
   console.log(data);
   console.log(process.env.user);
